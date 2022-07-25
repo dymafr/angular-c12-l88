@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'my-app',
@@ -7,17 +14,19 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  validatorPaul(formControl: FormControl): { [s: string]: boolean } {
-    if (formControl.value === 'paul') {
-      return { notPaul: true };
-    } else {
-      false;
-    }
+  validatorPaul(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (control.value === 'paul') {
+        return { notPaul: true };
+      } else {
+        return null;
+      }
+    };
   }
 
   public form: FormGroup = new FormGroup({
     name: new FormControl('', this.validatorPaul),
-    email: new FormControl(''),
+    email: new FormControl('', Validators.required),
     password: new FormControl(''),
   });
 
