@@ -1,0 +1,42 @@
+<hr />
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="d-flex flex-column form-group">
+      <label>Prénom</label>
+      <input
+        formControlName="name"
+        type="text"
+        name="name"
+        placeholder="prénom nom"
+      />
+    </div>
+    <div class="d-flex flex-column form-group">
+      <label>Email</label>
+      <input
+        formControlName="email"
+        type="email"
+        name="email"
+        placeholder="adresse email"
+      />
+    </div>
+    <div class="d-flex flex-column form-group">
+      <label>Mot de passe</label>
+      <input
+        formControlName="password"
+        type="password"
+        name="password"
+        placeholder="mot de asse"
+      />
+    </div>
+    <div class="d-flex flex-row">
+      <div class="btn">
+        <button type="submit" class="btn btn-primary">Inscription</button>
+      </div>
+    </div>
+  </form>
+</div>
+<hr />
+<div class="container">
+  <p>Value: {{ form.value | json }}</p>
+  <p>Status: {{ form.status | json }}</p>
+</div>
